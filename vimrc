@@ -57,6 +57,7 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFE
 
 set hlsearch		" Highlight search results
 set showmode
+set autoindent
 
 " Limit handled data
 set viminfo='800,<9999,s100
