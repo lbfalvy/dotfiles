@@ -1,0 +1,58 @@
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-/]=* r:|=*'
+zstyle :compinstall filename '/home/lbfalvy/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000000
+setopt autocd extendedglob nomatch interactivecomments
+unsetopt beep
+#bindkey -e
+# End of lines configured by zsh-newuser-install
+autoload -Uz add-zsh-hook vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+zstyle ':vcs_info:git:*' formats       '(%b%u%c)'
+zstyle ':vcs_info:git:*' actionformats '(%b|%a%u%c)'
+
+add-zsh-hook precmd vcs_info
+
+# basic envvars
+BROWSER=firefox
+EDITOR=vim
+RUSTC_WRAPPER=sccache
+SCCACHE_CACHE_SIZE=3G
+PATH=~/.cargo/bin:$PATH
+
+plugins=(git extract z)
+
+bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
+bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
+bindkey '^[[1;5A' beginning-of-line # Ctrl+up arrow
+bindkey '^[[H' beginning-of-line # Home
+bindkey '^[[1;5B' end-of-line # Ctrl+down arrow
+bindkey '^[[F' end-of-line # End
+bindkey '^[[3~' delete-char # Delete
+bindkey '^H' backward-kill-word # Ctrl+Backspace
+bindkey '5~' kill-word # Ctrl+Delete
+
+alias zoc="http_proxy=https://SURPRX1:VQATRUF3@zeus.edu.ihost.com:8003 https_proxy=https://SURPRX1:VQATRUF3@zeus.edu.ihost.com:8003 oc"
+alias zcurl="http_proxy=https://SURPRX1:VQATRUF3@zeus.edu.ihost.com:8003 https_proxy=https://SURPRX1:VQATRUF3@zeus.edu.ihost.com:8003 curl"
+alias npr="npm run"
+alias xtask="cargo xtask"
+alias wordcnt="find . -name \"*.md\" | xargs wc -w"
+alias ls="ls --color"
+
+PROMPT="%* %F{9}[%?]%f %F{11}%n%f%F{7}@%f%F{10}%m%f%F{7}:%f%F{cyan}%~%f"$' %F{white}${vcs_info_msg_0_}\nzsh %# '
+
+# zoxide
+eval "$(zoxide init zsh)"
